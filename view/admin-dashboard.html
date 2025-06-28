@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة تحكم المدير العام</title>
+  <style>
+    body { background: #f7f7f7; font-family: Tahoma, Arial, sans-serif; margin: 0; }
+    .header { background: #1a73e8; color: #fff; padding: 24px 0; text-align: center; }
+    .container { max-width: 1100px; margin: 32px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px #0001; padding: 32px 24px; }
+    h1 { margin: 0 0 16px; }
+    .cards { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+    .card { flex: 1 1 220px; min-width: 220px; background: #f3f7fa; border-radius: 10px; padding: 24px 16px; text-align: center; box-shadow: 0 1px 6px #0001; transition: box-shadow 0.2s; cursor: pointer; }
+    .card:hover { box-shadow: 0 4px 16px #0002; background: #e3f0fa; }
+    .card h2 { margin: 0 0 8px; font-size: 22px; color: #1a73e8; }
+    .card p { margin: 0; color: #444; font-size: 15px; }
+    @media (max-width: 700px) { .cards { flex-direction: column; gap: 16px; } }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>لوحة تحكم المدير العام</h1>
+    <p>مرحبًا بك في إدارة منصة العمرة</p>
+  </div>
+  <div class="container">
+    <div class="cards">
+      <div class="card" onclick="goTo('agencies')">
+        <h2>الوكالات</h2>
+        <p>إدارة وقبول وكالات السفر</p>
+      </div>
+      <div class="card" onclick="goTo('offers')">
+        <h2>العروض</h2>
+        <p>مراجعة وإدارة عروض العمرة</p>
+      </div>
+      <div class="card" onclick="goTo('bookings')">
+        <h2>الحجوزات</h2>
+        <p>متابعة الحجوزات وحالاتها</p>
+      </div>
+      <div class="card" onclick="goTo('admins')">
+        <h2>المدراء</h2>
+        <p>إدارة المدراء والصلاحيات</p>
+      </div>
+      <div class="card" onclick="goTo('chat')">
+        <h2>الدردشة</h2>
+        <p>مراسلة الوكالات والمدراء</p>
+      </div>
+      <div class="card" onclick="goTo('stats')">
+        <h2>إحصائيات</h2>
+        <p>عرض إحصائيات المنصة</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    function goTo(section) {
+      // يمكنك ربط كل قسم بصفحة منفصلة لاحقًا
+      alert('سيتم توجيهك إلى: ' + section);
+      // مثال: window.location.href = section + '.html';
+    }
+  </script>
+</body>
+</html>
