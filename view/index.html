@@ -36,17 +36,13 @@
       successMsg.textContent = '';
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
-      alert('سيتم إرسال البيانات: ' + email + ' / ' + password);
       try {
-        alert('سيتم إرسال الطلب إلى الخادم...');
         const res = await fetch('https://umrah-api.onrender.com/api/admin/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password })
         });
-        alert('تم استلام الرد من الخادم. سيتم قراءة البيانات...');
         const data = await res.json();
-        alert('كود الاستجابة: ' + res.status + '\nالرد: ' + JSON.stringify(data));
         if (!res.ok) {
           errorMsg.textContent = data.error || 'فشل تسجيل الدخول';
         } else {
@@ -56,7 +52,6 @@
           }, 1000);
         }
       } catch (err) {
-        alert('حدث خطأ في الاتصال بالخادم: ' + err);
         errorMsg.textContent = 'حدث خطأ في الاتصال بالخادم';
       }
     };
