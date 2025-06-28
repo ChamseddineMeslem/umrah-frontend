@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل دخول المدير</title>
+  <style>
+    body { background: #f7f7f7; font-family: Tahoma, Arial, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; }
+    .login-box { background: #fff; padding: 32px 24px; border-radius: 12px; box-shadow: 0 2px 12px #0001; min-width: 320px; }
+    h2 { color: #1a73e8; text-align: center; }
+    label { display: block; margin: 16px 0 6px; }
+    input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px; }
+    button { width: 100%; background: #1a73e8; color: #fff; border: none; padding: 12px; border-radius: 6px; font-size: 16px; cursor: pointer; }
+    .error { color: #d32f2f; text-align: center; margin-bottom: 10px; }
+    .success { color: #388e3c; text-align: center; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <form class="login-box" id="loginForm">
+    <h2>تسجيل دخول المدير</h2>
+    <div class="error" id="errorMsg"></div>
+    <div class="success" id="successMsg"></div>
+    <label for="email">البريد الإلكتروني</label>
+    <input type="email" id="email" required autocomplete="username">
+    <label for="password">كلمة المرور</label>
+    <input type="password" id="password" required autocomplete="current-password">
+    <button type="submit">دخول</button>
+  </form>
+  <script>
+    const form = document.getElementById('loginForm');
+    const errorMsg = document.getElementById('errorMsg');
+    const successMsg = document.getElementById('successMsg');
+    form.onsubmit = async (e) => {
+      e.preventDefault();
+      errorMsg.textContent = '';
+      successMsg.textContent = '';
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      try {
+        const res = await fetch('https://umrah-api.onrender.com/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          errorMsg.textContent = data.error || 'فشل تسجيل الدخول';
+        } else {
+          successMsg.textContent = 'تم تسجيل الدخول بنجاح!';
+          // إعادة التوجيه للوحة تحكم المدير
+          setTimeout(() => {
+            window.location.href = 'admin-dashboard.html';
+          }, 1000);
+        }
+      } catch (err) {
+        errorMsg.textContent = 'حدث خطأ في الاتصال بالخادم';
+      }
+    };
+  </script>
+</body>
+</html>
